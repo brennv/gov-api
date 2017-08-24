@@ -33,18 +33,20 @@ def merge_social(names, social):
 
 def get_twitter_handles(data):
     handles = {}
-    e = 0
+    warnings = []
     for k, v in data.items():
         try:
             handles[k] = v['social']['twitter']
         except KeyError:
-            e += 1
             if 'social' in v:
-                print('no twitter', v['id']['bioguide'])
+                warnings.append(' * No twitter data for ' + v['id']['bioguide'])
             else:
-                print('no social', v['id']['bioguide'])
+                warnings.append(' * No social data for ' + v['id']['bioguide'])
             handles[k] = ''
-    print('errors', e)
+    if warnings:
+        print(' * Data warnings:', len(warnings))
+        for w in warnings:
+            print(w)
     return handles
 
 
