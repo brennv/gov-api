@@ -1,0 +1,13 @@
+- id:
+    bioguide: JBJBJBJ
+  name:
+    first: Jerry
+    last: Brown
+    official_full: Jerry Brown
+  bio:
+  terms:
+  - type: governor
+    state: CA
+  social:
+    twitter: jerrybrowngov
+    twitter_id: 19418459

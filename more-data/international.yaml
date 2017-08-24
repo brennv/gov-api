@@ -1,0 +1,13 @@
+- id:
+    bioguide: AMAMAMA
+  name:
+    first: Angela
+    last: Merkel
+    official_full: Angela Merkel
+  bio:
+  terms:
+  - type: chancellor
+  social:
+    twitter: AngelaMerkeICDU
+    twitter_id: '2631881902'
+  country: Germany

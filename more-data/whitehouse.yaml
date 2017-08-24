@@ -1,0 +1,50 @@
+- id:
+    bioguide: BOBOBOB
+  name:
+    first: Barack
+    last: Obama
+    official_full: Barack Obama
+  bio:
+  terms:
+  - type: president
+    party: Democrat
+  social:
+    twitter: BarackObama
+    twitter_id: 813286
+- id:
+    bioguide: MOMOMOM
+  name:
+    first: Michelle
+    last: Obama
+    official_full: Michelle Obama
+  bio:
+  terms:
+  - type: first lady
+  social:
+    twitter: MichelleObama
+    twitter_id: 409486555
+- id:
+    bioguide: DTDTDTD
+  name:
+    first: Donald
+    last: Trump
+    official_full: Donald Trump
+  bio:
+  terms:
+  - type: president
+    party: Republican
+  social:
+    twitter: realDonaldTrump
+    twitter_id: 25073877
+- id:
+    bioguide: MTMTMTM
+  name:
+    first: Melania
+    last: Trump
+    official_full: Melania Trump
+  bio:
+  terms:
+  - type: first lady
+  social:
+    twitter: FLOTUS
+    twitter_id: '818876014390603776'
