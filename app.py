@@ -1,22 +1,23 @@
-from data import data, handles, tweets
+from data import data, twitter_ids, tweets
 from flask import Flask, jsonify
 
 
 app = Flask(__name__)
+all_data = [v for k, v in data.items()]
 
 
-@app.route('/gov/api/congress')
-def congress():
-    return jsonify(data)
+@app.route('/gov/api/')
+def all_the_data():
+    return jsonify(all_data)
 
 
-@app.route('/gov/api/congress/handles')
-def congress_handles():
-    return jsonify(handles)
+@app.route('/gov/api/twitter')
+def twitter_handles():
+    return jsonify(twitter_ids)
 
 
-@app.route('/gov/api/congress/tweets')
-def congress_tweets():
+@app.route('/gov/api/tweets')
+def tweets():
     return jsonify(tweets)
 
 
