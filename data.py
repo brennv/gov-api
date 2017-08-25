@@ -86,3 +86,6 @@ data = merge_data(data, whitehouse)
 
 twitter_ids = get_twitter_handles(data)
 data, tweets = get_tweets(data, twitter_ids)
+
+twitter_ids = [v for k, v in twitter_ids.items()]
+data = [v for k, v in data.items()]

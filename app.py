@@ -3,12 +3,11 @@ from flask import Flask, jsonify
 
 
 app = Flask(__name__)
-all_data = [v for k, v in data.items()]
 
 
 @app.route('/gov/api/')
 def all_the_data():
-    return jsonify(all_data)
+    return jsonify(data)
 
 
 @app.route('/gov/api/twitter')
