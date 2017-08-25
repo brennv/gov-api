@@ -14,13 +14,22 @@ access_token_secret = os.getenv('access_token_secret')
 # twitter = tweepy.API(auth)
 
 with open('congress-legislators/legislators-current.yaml') as f:
-    names = yaml.load(f)
+    congress_names = yaml.load(f)
 
 with open('congress-legislators/legislators-social-media.yaml') as f:
-    social = yaml.load(f)
+    congress_social = yaml.load(f)
+
+with open('more-data/governors.yaml') as f:
+    governors = yaml.load(f)
+
+with open('more-data/international.yaml') as f:
+    international = yaml.load(f)
+
+with open('more-data/whitehouse.yaml') as f:
+    whitehouse = yaml.load(f)
 
 
-def merge_social(names, social):
+def merge_congress(names, social):
     data = {}
     for n in names:
         bioguide = n['id']['bioguide']
@@ -28,6 +37,13 @@ def merge_social(names, social):
     for s in social:
         bioguide = s['id']['bioguide']
         data[bioguide]['social'] = s['social']
+    return data
+
+
+def merge_data(data, more_data):
+    for m in more_data:
+        bioguide = m['id']['bioguide']
+        data[bioguide] = m
     return data
 
 
@@ -61,6 +77,12 @@ def get_tweets(data, handles):
     return data, all_tweets
 
 
-data = merge_social(names, social)
-handles = get_twitter_handles(data)
-data, tweets = get_tweets(data, handles)
+congress = merge_congress(congress_names, congress_social)
+
+data = congress.copy()
+data = merge_data(data, governors)
+data = merge_data(data, international)
+data = merge_data(data, whitehouse)
+
+twitter_ids = get_twitter_handles(data)
+data, tweets = get_tweets(data, twitter_ids)
