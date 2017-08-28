@@ -15,15 +15,15 @@ access_token_secret = os.getenv('access_token_secret')
 # auth.set_access_token(access_token, access_token_secret)
 
 # twitter = tweepy.API(auth)
-"""
-filepath = os.path.join(root, 'congress-legislators', 'legislators-current.yaml')
+# """
+filepath = os.path.join(root, 'more-data', 'legislators-current.yaml')
 with open(filepath) as f:
     congress_names = yaml.load(f)
 
-filepath = os.path.join(root, 'congress-legislators', 'legislators-social-media.yaml')
+filepath = os.path.join(root, 'more-data', 'legislators-social-media.yaml')
 with open(filepath) as f:
     congress_social = yaml.load(f)
-"""
+# """
 filepath = os.path.join(root, 'more-data', 'governors.yaml')
 with open(filepath) as f:
     governors = yaml.load(f)
