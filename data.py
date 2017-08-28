@@ -3,7 +3,7 @@ import tweepy
 import os
 
 # os.path.abspath(os.path.dirname(__file__))
-root = os.path.abspath(os.path.dirname(__file__))
+root = os.path.realpath(os.path.dirname(__file__))
 print(os.listdir())
 
 consumer_key = os.getenv('consumer_key')
@@ -15,7 +15,7 @@ access_token_secret = os.getenv('access_token_secret')
 # auth.set_access_token(access_token, access_token_secret)
 
 # twitter = tweepy.API(auth)
-
+"""
 filepath = os.path.join(root, 'congress-legislators', 'legislators-current.yaml')
 with open(filepath) as f:
     congress_names = yaml.load(f)
@@ -23,7 +23,7 @@ with open(filepath) as f:
 filepath = os.path.join(root, 'congress-legislators', 'legislators-social-media.yaml')
 with open(filepath) as f:
     congress_social = yaml.load(f)
-
+"""
 filepath = os.path.join(root, 'more-data', 'governors.yaml')
 with open(filepath) as f:
     governors = yaml.load(f)
