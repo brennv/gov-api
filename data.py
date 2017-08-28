@@ -4,7 +4,7 @@ import os
 
 # os.path.abspath(os.path.dirname(__file__))
 root = os.path.abspath(os.path.dirname(__file__))
-print(root)
+print(os.listdir())
 
 consumer_key = os.getenv('consumer_key')
 consumer_secret = os.getenv('consumer_secret')
