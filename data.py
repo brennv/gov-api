@@ -2,6 +2,7 @@ import yaml
 import tweepy
 import os
 
+root = os.path.realpath(os.path.dirname(__file__))
 
 consumer_key = os.getenv('consumer_key')
 consumer_secret = os.getenv('consumer_secret')
@@ -13,19 +14,24 @@ access_token_secret = os.getenv('access_token_secret')
 
 # twitter = tweepy.API(auth)
 
-with open('congress-legislators/legislators-current.yaml') as f:
+filepath = os.path.join(root, 'congress-legislators/legislators-current.yaml')
+with open(filepath) as f:
     congress_names = yaml.load(f)
 
-with open('congress-legislators/legislators-social-media.yaml') as f:
+filepath = os.path.join(root, 'congress-legislators/legislators-social-media.yaml')
+with open(filepath) as f:
     congress_social = yaml.load(f)
 
-with open('more-data/governors.yaml') as f:
+filepath = os.path.join(root, 'more-data/governors.yaml')
+with open(filepath) as f:
     governors = yaml.load(f)
 
-with open('more-data/international.yaml') as f:
+filepath = os.path.join(root, 'more-data/international.yaml')
+with open(filepath) as f:
     international = yaml.load(f)
 
-with open('more-data/whitehouse.yaml') as f:
+filepath = os.path.join(root, 'more-data/whitehouse.yaml')
+with open(filepath) as f:
     whitehouse = yaml.load(f)
 
 
