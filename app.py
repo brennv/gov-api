@@ -5,6 +5,11 @@ from flask import Flask, jsonify
 app = Flask(__name__)
 
 
+@app.route('/')
+def health():
+    return 'API/ up'
+
+
 @app.route('/api/')
 def all_the_data():
     return jsonify(data)
