@@ -2,7 +2,9 @@ import yaml
 import tweepy
 import os
 
-root = os.path.realpath(os.path.dirname(__file__))
+# os.path.abspath(os.path.dirname(__file__))
+root = os.path.abspath(os.path.dirname(__file__))
+print(root)
 
 consumer_key = os.getenv('consumer_key')
 consumer_secret = os.getenv('consumer_secret')
@@ -14,23 +16,23 @@ access_token_secret = os.getenv('access_token_secret')
 
 # twitter = tweepy.API(auth)
 
-filepath = os.path.join(root, 'congress-legislators/legislators-current.yaml')
+filepath = os.path.join(root, 'congress-legislators', 'legislators-current.yaml')
 with open(filepath) as f:
     congress_names = yaml.load(f)
 
-filepath = os.path.join(root, 'congress-legislators/legislators-social-media.yaml')
+filepath = os.path.join(root, 'congress-legislators', 'legislators-social-media.yaml')
 with open(filepath) as f:
     congress_social = yaml.load(f)
 
-filepath = os.path.join(root, 'more-data/governors.yaml')
+filepath = os.path.join(root, 'more-data', 'governors.yaml')
 with open(filepath) as f:
     governors = yaml.load(f)
 
-filepath = os.path.join(root, 'more-data/international.yaml')
+filepath = os.path.join(root, 'more-data', 'international.yaml')
 with open(filepath) as f:
     international = yaml.load(f)
 
-filepath = os.path.join(root, 'more-data/whitehouse.yaml')
+filepath = os.path.join(root, 'more-data', 'whitehouse.yaml')
 with open(filepath) as f:
     whitehouse = yaml.load(f)
 
