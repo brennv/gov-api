@@ -10,3 +10,4 @@ rtyaml==0.0.3
 scrapelib==1.1.0
 PyYAML==3.12
 gunicorn
+flasgger
