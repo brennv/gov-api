@@ -2,3 +2,5 @@ gunicorn
 flask
 pyyaml
 tweepy
+Flask-RESTful
+flasgger
