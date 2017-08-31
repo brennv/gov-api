@@ -1,29 +1,17 @@
-from data import data, twitter_ids, tweets
-from flask import Flask, jsonify
+from config import swagger_config, template
+from endpoints import (Health, Data)
+from flask import Flask
+from flask_restful import Api, Resource
+from flasgger import Swagger
 
 
 app = Flask(__name__)
+api = Api(app)
+swagger = Swagger(app, template=template, config=swagger_config)
 
-
-@app.route('/')
-def health():
-    return 'API/ up'
-
-
-@app.route('/api/')
-def all_the_data():
-    return jsonify(data)
-
-
-@app.route('/api/twitter')
-def twitter_handles():
-    return jsonify(twitter_ids)
-
-
-@app.route('/api/tweets')
-def tweets():
-    return jsonify(tweets)
+api.add_resource(Data, '/api/data')
+api.add_resource(Health, '/api/health')
 
 
 if __name__ == '__main__':
-    app.run(threaded=True)
+    app.run(threaded=True)  # debug=True

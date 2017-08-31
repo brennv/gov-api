@@ -83,6 +83,13 @@ def get_tweets(data, handles):
     return data, all_tweets
 
 
+def clean_up(data):
+    for k, v in data.items():
+        data[k]['id'] = k
+        data[k]['terms'] = data[k]['terms'][-1]
+    return data
+
+
 congress = merge_congress(congress_names, congress_social)
 
 data = congress.copy()
@@ -94,4 +101,6 @@ twitter_ids = get_twitter_handles(data)
 data, tweets = get_tweets(data, twitter_ids)
 
 twitter_ids = [v for k, v in twitter_ids.items()]
+
+data = clean_up(data)
 data = [v for k, v in data.items()]
