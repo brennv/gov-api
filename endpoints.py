@@ -29,7 +29,7 @@ class Data(Resource):
         All the data
         ---
         tags:
-          - all the data
+          - admin
         responses:
          200:
            description: Status check
@@ -43,15 +43,44 @@ class Data(Resource):
         """
         return data, 200
 
-"""
+
+class Twitter(Resource):
+    def get(self):
+        """
+        Twitter handles
+        ---
+        tags:
+          - world
+        responses:
+         200:
+           description: Status check
+           schema:
+             id: Twitter
+             properties:
+               id:
+                 type: string
+                 description: Health status of API service
+                 default: ok
+        """
+        return twitter_ids, 200
 
 
-@app.route('/api/twitter')
-def twitter_handles():
-    return jsonify(twitter_ids)
-
-
-@app.route('/api/tweets')
-def tweets():
-    return jsonify(tweets)
-"""
+class Tweets(Resource):
+    def get(self):
+        """
+        Tweets
+        ---
+        tags:
+          - world
+        responses:
+         200:
+           description: Status check
+           schema:
+             id: Tweets
+             properties:
+               id:
+                 type: string
+                 description: Health status of API service
+                 default: ok
+        """
+        return tweets, 200

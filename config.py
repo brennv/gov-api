@@ -30,10 +30,10 @@ template = {
       # "url": "www.me.com",
     # },
     # "termsOfService": "http://me.com/terms",
-    "version": "1.0.0"
+    "version": "0.1.0"
   },
   # "host": "127.0.0.1:5000",
-  "host": "gov.vonapp.co",  # overrides localhost:500
+  "host": "gov.vonapp.co",  # overrides 127.0.0.1:5000
   "basePath": "/",  # base bash for blueprint registration
   "schemes": [
     "https",
@@ -43,6 +43,6 @@ template = {
   # for tag order
   "tags": [
       {"name": "admin", "description": ""},
-      {"name": "all the data", "description": ""},
+      {"name": "world", "description": ""},
   ]
 }
