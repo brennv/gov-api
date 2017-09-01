@@ -33,10 +33,10 @@ template = {
     "version": "0.1.0"
   },
   # "host": "127.0.0.1:5000",
-  "host": "gov.vonapp.co",  # overrides 127.0.0.1:5000
+  # "host": "gov.vonapp.co",  # overrides 127.0.0.1:5000
   "basePath": "/",  # base bash for blueprint registration
   "schemes": [
-    "https",
+    # "https",
     # "https"
   ],
   "operationId": "get_data",

@@ -1,5 +1,5 @@
-from config import swagger_config, template
-from endpoints import Health, Data, Twitter, Tweets
+from gov import swagger_config, template
+from gov import Health, Data, Twitter, Tweets
 from flask import Flask
 from flask_restful import Api, Resource
 from flasgger import Swagger

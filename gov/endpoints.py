@@ -1,4 +1,4 @@
-from data import data, twitter_ids, tweets
+from .data import data, twitter_ids, tweets
 from flask_restful import Resource
 
 
