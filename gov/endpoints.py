@@ -44,7 +44,7 @@ class Data(Resource):
         return data, 200
 
 
-class Twitter(Resource):
+class WorldIds(Resource):
     def get(self):
         """
         Twitter handles
@@ -65,7 +65,7 @@ class Twitter(Resource):
         return twitter_ids, 200
 
 
-class Tweets(Resource):
+class WorldTweets(Resource):
     def get(self):
         """
         Tweets
