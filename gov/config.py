@@ -1,3 +1,29 @@
+import os
+
+host = os.getenv('template_host', '127.0.0.1:5000')
+scheme = [os.getenv('template_scheme', '')]
+scheme = [x for x in scheme if x]
+
+template = {
+  # "host": "gov.vonapp.co",
+  "host": host,
+  # "schemes": ["https"],
+  "schemes": scheme,
+  "swagger": "2.0",
+  "info": {
+    "title": "Government tweets",
+    "description": "API endpoints for gov.vonapp.co",
+    "version": "0.1.0"
+  },
+  "basePath": "/",
+  "operationId": "get_data",
+  # set tag order
+  "tags": [
+      {"name": "admin", "description": ""},
+      {"name": "world", "description": ""},
+  ]
+}
+
 swagger_config = {
     "headers": [],
     "specs": [
@@ -10,39 +36,7 @@ swagger_config = {
         }
     ],
     "static_url_path": "/flasgger_static",
-    # "static_folder": "static",  # must be set by user
     "swagger_ui": True,
     "specs_route": "/api/spec/",
-    # "description": 'Endpoints for gov.vonapp.co/api/',
     'title': 'Government tweets',
-    # 'endpoint': 'peeps',
-}
-
-template = {
-  "swagger": "2.0",
-  "info": {
-    "title": "Government tweets",
-    "description": "API endpoints for gov.vonapp.co",
-    # "contact": {
-      # "responsibleOrganization": "ME",
-      # "responsibleDeveloper": "Me",
-      # "email": "me@me.com",
-      # "url": "www.me.com",
-    # },
-    # "termsOfService": "http://me.com/terms",
-    "version": "0.1.0"
-  },
-  # "host": "127.0.0.1:5000",
-  # "host": "gov.vonapp.co",  # overrides 127.0.0.1:5000
-  "basePath": "/",  # base bash for blueprint registration
-  "schemes": [
-    # "https",
-    # "https"
-  ],
-  "operationId": "get_data",
-  # for tag order
-  "tags": [
-      {"name": "admin", "description": ""},
-      {"name": "world", "description": ""},
-  ]
 }
