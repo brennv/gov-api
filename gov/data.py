@@ -3,7 +3,7 @@ import yaml
 import os
 
 
-root = os.path.realpath(os.path.dirname(__file__)) 
+root = os.path.realpath(os.path.dirname(__file__))
 
 filepath = os.path.join(root, 'more-data', 'legislators-current.yaml')
 with open(filepath) as f:
@@ -47,7 +47,7 @@ def get_tweets(id):
     if twitter_id:
         results = twitter.user_timeline(id=twitter_id)  # , count=count)
         results = [x._json for x in results]
-    return resultsn
+    return results
 
 
 congress_by_id, congress_ids = merge_congress(congress_names, congress_social)
