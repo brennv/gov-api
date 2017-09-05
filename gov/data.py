@@ -41,12 +41,14 @@ def get_legislator(bid, attr=None, subattr=None):
     return result
 
 
-def get_tweets(id):
+def get_tweets(id, count=10):
     results = []
     twitter_id = str(get_legislator(id, 'social', 'twitter_id'))
     if twitter_id:
-        results = twitter.user_timeline(id=twitter_id)  # , count=count)
+        results = twitter.user_timeline(id=twitter_id, count=count)
         results = [x._json for x in results]
+    if count == 1:
+        results = results[0]
     return results
 
 

@@ -1,8 +1,8 @@
 from gov.swagger import swagger_config, template
 from gov.endpoints import (Health, Congress, CongressIds, Legislator,
     LegislatorName, LegislatorIds, LegislatorSocial, LegislatorBio,
-    LegislatorTerm, LegislatorTerms, LegislatorTweets)
-from flask import Flask, jsonify
+    LegislatorTerm, LegislatorTerms, LegislatorTweet, LegislatorTweets)
+from flask import Flask, jsonify, redirect
 from flask_restful import Api, Resource
 from flasgger import Swagger
 
@@ -23,9 +23,14 @@ api.add_resource(LegislatorSocial, '/api/legislator/<string:id>/social')
 api.add_resource(LegislatorBio, '/api/legislator/<string:id>/bio')
 api.add_resource(LegislatorTerm, '/api/legislator/<string:id>/term')
 api.add_resource(LegislatorTerms, '/api/legislator/<string:id>/terms')
+api.add_resource(LegislatorTweet, '/api/legislator/<string:id>/tweet')
 api.add_resource(LegislatorTweets, '/api/legislator/<string:id>/tweets')
 # api.add_resource(LegislatorTweets, '/api/legislator/<string:id>/committees')
 
+
+@app.route('/')
+def index():
+    return redirect('/api/spec/')
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -33,4 +38,4 @@ def page_not_found(e):
 
 
 if __name__ == '__main__':
-    app.run(threaded=True)
+    app.run(debug=True)

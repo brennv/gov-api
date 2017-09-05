@@ -26,20 +26,13 @@ class Health(Resource):
 class Congress(Resource):
     def get(self):
         """
-        Legislator objects
+        Legislator entities
         ---
         tags:
           - congress
         responses:
          200:
-           description: Legislator objects
-           schema:
-             id: Data
-             properties:
-               id:
-                 type: string
-                 description: Health status of API service
-                 default: ok
+           description: List of legislator entities
         """
         return congress, 200
 
@@ -53,14 +46,7 @@ class CongressIds(Resource):
           - congress
         responses:
          200:
-           description: Legislator bioguide IDs
-           schema:
-             id: Data
-             properties:
-               id:
-                 type: string
-                 description: Health status of API service
-                 default: ok
+           description: List of legislator bioguide IDs
         """
         return congress_ids, 200
 
@@ -68,20 +54,19 @@ class CongressIds(Resource):
 class Legislator(Resource):
     def get(self, id):
         """
-        Legislator object
+        Legislator entity
         ---
         tags:
           - legislator
+        parameters:
+          - name: id
+            in: path
+            type: string
+            required: true
+            default: F000062
         responses:
          200:
-           description: Status check
-           schema:
-             id: Data
-             properties:
-               id:
-                 type: string
-                 description: Health status of API service
-                 default: ok
+           description: Legislator entity
         """
         return get_legislator(id), 200
 
@@ -89,20 +74,19 @@ class Legislator(Resource):
 class LegislatorName(Resource):
     def get(self, id):
         """
-        Legislator names
+        Legislator name
         ---
         tags:
           - legislator
+        parameters:
+          - name: id
+            in: path
+            type: string
+            required: true
+            default: F000062
         responses:
          200:
-           description: Status check
-           schema:
-             id: Data
-             properties:
-               id:
-                 type: string
-                 description: Health status of API service
-                 default: ok
+           description: First, last and full name
         """
         return get_legislator(id, 'name'), 200
 
@@ -110,20 +94,19 @@ class LegislatorName(Resource):
 class LegislatorIds(Resource):
     def get(self, id):
         """
-        All the data
+        Legislator IDs
         ---
         tags:
           - legislator
+        parameters:
+          - name: id
+            in: path
+            type: string
+            required: true
+            default: F000062
         responses:
          200:
-           description: Status check
-           schema:
-             id: Data
-             properties:
-               id:
-                 type: string
-                 description: Health status of API service
-                 default: ok
+           description: Associated legislator IDs
         """
         return get_legislator(id, 'id'), 200
 
@@ -131,20 +114,19 @@ class LegislatorIds(Resource):
 class LegislatorSocial(Resource):
     def get(self, id):
         """
-        All the data
+        Social accounts
         ---
         tags:
           - legislator
+        parameters:
+          - name: id
+            in: path
+            type: string
+            required: true
+            default: F000062
         responses:
          200:
-           description: Status check
-           schema:
-             id: Data
-             properties:
-               id:
-                 type: string
-                 description: Health status of API service
-                 default: ok
+           description: Social accounts
         """
         return get_legislator(id, 'social'), 200
 
@@ -152,20 +134,19 @@ class LegislatorSocial(Resource):
 class LegislatorBio(Resource):
     def get(self, id):
         """
-        All the data
+        Biographical info
         ---
         tags:
           - legislator
+        parameters:
+          - name: id
+            in: path
+            type: string
+            required: true
+            default: F000062
         responses:
          200:
-           description: Status check
-           schema:
-             id: Data
-             properties:
-               id:
-                 type: string
-                 description: Health status of API service
-                 default: ok
+           description: Biographical info
         """
         return get_legislator(id, 'bio'), 200
 
@@ -173,20 +154,19 @@ class LegislatorBio(Resource):
 class LegislatorTerm(Resource):
     def get(self, id):
         """
-        All the data
+        Current term info
         ---
         tags:
           - legislator
+        parameters:
+          - name: id
+            in: path
+            type: string
+            required: true
+            default: F000062
         responses:
          200:
-           description: Status check
-           schema:
-             id: Data
-             properties:
-               id:
-                 type: string
-                 description: Health status of API service
-                 default: ok
+           description: Current office term info
         """
         return get_legislator(id, 'terms')[-1], 200
 
@@ -194,20 +174,19 @@ class LegislatorTerm(Resource):
 class LegislatorTerms(Resource):
     def get(self, id):
         """
-        All the data
+        List of terms served
         ---
         tags:
           - legislator
+        parameters:
+          - name: id
+            in: path
+            type: string
+            required: true
+            default: F000062
         responses:
          200:
-           description: Status check
-           schema:
-             id: Data
-             properties:
-               id:
-                 type: string
-                 description: Health status of API service
-                 default: ok
+           description: Chronological list of terms
         """
         return get_legislator(id, 'terms'), 200
 
@@ -215,40 +194,58 @@ class LegislatorTerms(Resource):
 class LegislatorCommittees(Resource):
     def get(self, id):
         """
-        All the data
+        Committee memberships
         ---
         tags:
           - legislator
+        parameters:
+          - name: id
+            in: path
+            type: string
+            required: true
+            default: F000062
         responses:
          200:
-           description: Status check
-           schema:
-             id: Data
-             properties:
-               id:
-                 type: string
-                 description: Health status of API service
-                 default: ok
+           description: List of committee memberships
         """
         return get_legislator(id, 'committees'), 200
+
+
+class LegislatorTweet(Resource):
+    def get(self, id):
+        """
+        Recent tweet
+        ---
+        tags:
+          - legislator
+        parameters:
+          - name: id
+            in: path
+            type: string
+            required: true
+            default: F000062
+        responses:
+         200:
+           description: Most recent tweet
+        """
+        return get_tweets(id, count=1), 200
 
 
 class LegislatorTweets(Resource):
     def get(self, id):
         """
-        All the data
+        List of recent tweets
         ---
         tags:
           - legislator
+        parameters:
+          - name: id
+            in: path
+            type: string
+            required: true
+            default: F000062
         responses:
          200:
-           description: Status check
-           schema:
-             id: Data
-             properties:
-               id:
-                 type: string
-                 description: Health status of API service
-                 default: ok
+           description: List of recent tweets
         """
         return get_tweets(id), 200
