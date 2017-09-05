@@ -28,9 +28,9 @@ api.add_resource(LegislatorTweets, '/api/legislator/<string:id>/tweets')
 # api.add_resource(LegislatorTweets, '/api/legislator/<string:id>/committees')
 
 
-@app.route('/')
-def index():
-    return redirect('/api/spec/')
+# @app.route('/')
+# def index():
+#     return redirect('/api/spec/')
 
 @app.errorhandler(404)
 def page_not_found(e):
