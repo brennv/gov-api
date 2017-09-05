@@ -3,15 +3,13 @@ import yaml
 import os
 
 
-base_path = os.path.dirname(__file__)
+root = os.path.realpath(os.path.dirname(__file__)) 
 
-base_path = '/'.join(base_path.split('/')[:-1])
-
-filepath = os.path.join(base_path, 'congress-legislators/legislators-current.yaml')
+filepath = os.path.join(root, 'more-data', 'legislators-current.yaml')
 with open(filepath) as f:
     congress_names = yaml.load(f)
 
-filepath = os.path.join(base_path, 'congress-legislators/legislators-social-media.yaml')
+filepath = os.path.join(root, 'more-data', 'legislators-social-media.yaml')
 with open(filepath) as f:
     congress_social = yaml.load(f)
 
