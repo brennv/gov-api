@@ -1,106 +1,54 @@
+from .twitter import twitter
 import yaml
-import tweepy
 import os
+
 
 root = os.path.realpath(os.path.dirname(__file__))
 
-consumer_key = os.getenv('consumer_key')
-consumer_secret = os.getenv('consumer_secret')
-access_token = os.getenv('access_token')
-access_token_secret = os.getenv('access_token_secret')
-
-# auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-# auth.set_access_token(access_token, access_token_secret)
-
-# twitter = tweepy.API(auth)
-# """
-filepath = os.path.join(root, 'more-data', 'legislators-current.yaml')
+filepath = os.path.join(root, '../congress-legislators/legislators-current.yaml')
 with open(filepath) as f:
     congress_names = yaml.load(f)
 
-filepath = os.path.join(root, 'more-data', 'legislators-social-media.yaml')
+filepath = os.path.join(root, '../congress-legislators/legislators-social-media.yaml')
 with open(filepath) as f:
     congress_social = yaml.load(f)
-# """
-filepath = os.path.join(root, 'more-data', 'governors.yaml')
-with open(filepath) as f:
-    governors = yaml.load(f)
-
-filepath = os.path.join(root, 'more-data', 'international.yaml')
-with open(filepath) as f:
-    international = yaml.load(f)
-
-filepath = os.path.join(root, 'more-data', 'whitehouse.yaml')
-with open(filepath) as f:
-    whitehouse = yaml.load(f)
 
 
 def merge_congress(names, social):
-    data = {}
+    congress_by_id = {}
+    ids = []
     for n in names:
         bioguide = n['id']['bioguide']
-        data[bioguide] = n
+        congress_by_id[bioguide] = n
+        ids.append(bioguide)
     for s in social:
         bioguide = s['id']['bioguide']
-        data[bioguide]['social'] = s['social']
-    return data
+        congress_by_id[bioguide]['social'] = s['social']
+    return congress_by_id, ids
 
 
-def merge_data(data, more_data):
-    for m in more_data:
-        bioguide = m['id']['bioguide']
-        data[bioguide] = m
-    return data
+def get_legislator(bid, attr=None, subattr=None):
+    bid = bid.upper()
+    try:
+        if subattr:
+            result = congress_by_id[bid][attr][subattr]
+        elif attr:
+            result = congress_by_id[bid][attr]
+        else:
+            result = congress_by_id[bid]
+    except KeyError:
+        result = {"message": "Invalid request"}
+    return result
 
 
-def get_twitter_handles(data):
-    handles = {}
-    warnings = []
-    for k, v in data.items():
-        try:
-            handles[k] = v['social']['twitter']
-        except KeyError:
-            if 'social' in v:
-                warnings.append(' * No twitter data for ' + v['id']['bioguide'])
-            else:
-                warnings.append(' * No social data for ' + v['id']['bioguide'])
-            handles[k] = ''
-    if warnings:
-        print(' * Data warnings:', len(warnings))
-        for w in warnings:
-            print(w)
-    return handles
+def get_tweets(id):
+    results = []
+    twitter_id = str(get_legislator(id, 'social', 'twitter_id'))
+    if twitter_id:
+        results = twitter.user_timeline(id=twitter_id)  # , count=count)
+        results = [x._json for x in results]
+    return resultsn
 
 
-def get_tweets(data, handles):
-    all_tweets = []
-    for k, v in handles.items():
-        tweets = []
-        if v:
-            tweets = []  # twitter.user_timeline(v)
-        data[k]['tweets'] = tweets
-        all_tweets.append(tweets)
-    return data, all_tweets
-
-
-def clean_up(data):
-    for k, v in data.items():
-        data[k]['id'] = k
-        data[k]['terms'] = data[k]['terms'][-1]
-    return data
-
-
-congress = merge_congress(congress_names, congress_social)
-
-data = congress.copy()
-data = merge_data(data, governors)
-data = merge_data(data, international)
-data = merge_data(data, whitehouse)
-
-twitter_ids = get_twitter_handles(data)
-data, tweets = get_tweets(data, twitter_ids)
-
-twitter_ids = [v for k, v in twitter_ids.items()]
-
-data = clean_up(data)
-data = [v for k, v in data.items()]
+congress_by_id, congress_ids = merge_congress(congress_names, congress_social)
+congress = [v for k, v in congress_by_id.items()]

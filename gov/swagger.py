@@ -1,7 +1,7 @@
 import os
 
-host = os.getenv('template_host', '127.0.0.1:5000')
-scheme = [os.getenv('template_scheme', '')]
+host = os.getenv('GOV_API_HOST', '127.0.0.1:5000')
+scheme = [os.getenv('GOV_API_SCHEME', '')]
 scheme = [x for x in scheme if x]
 
 template = {
@@ -20,7 +20,8 @@ template = {
   # set tag order
   "tags": [
       {"name": "admin", "description": ""},
-      {"name": "world", "description": ""},
+      {"name": "congress", "description": ""},
+      {"name": "legislator", "description": ""},
   ]
 }
 
