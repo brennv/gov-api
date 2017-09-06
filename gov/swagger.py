@@ -7,8 +7,8 @@ scheme = [x for x in scheme if x]
 template = {
   # "host": "gov.vonapp.co",
   "host": host,
-  # "schemes": ["https"],
-  "schemes": scheme,
+  "schemes": ["https", "https"],
+  # "schemes": scheme,
   "swagger": "2.0",
   "info": {
     "title": "Government tweets",
