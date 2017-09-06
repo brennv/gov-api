@@ -2,7 +2,7 @@
 
 RESTful mash-up of [unitedstates/congress-legislators](https://github.com/unitedstates/congress-legislators) and Twitter.
 
-See: [gov.vonapp.co](http://gov.vonapp.co)
+See: [http://gov.vonapp.co/api/spec](http://gov.vonapp.co/api/spec)
 
 ## Endpoints
 
